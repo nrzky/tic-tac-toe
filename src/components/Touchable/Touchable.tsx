@@ -17,7 +17,7 @@ const Touchable: React.FC<TouchableProps> = ({
   const handlePressIn = React.useCallback(
     (event: GestureResponderEvent) => {
       Animated.timing(offset, {
-        toValue: 0.9,
+        toValue: 0.95,
         duration: ANIMATED_DURATION,
         useNativeDriver: true,
       }).start(() => onPressIn && onPressIn(event));
