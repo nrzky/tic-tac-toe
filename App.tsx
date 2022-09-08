@@ -1,20 +1,9 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+
+import { AppNavigator } from '@app/routes';
 
 const App: React.FC = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Tic Tac Toe</Text>
-    </View>
-  );
+  return <AppNavigator />;
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
