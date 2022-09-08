@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
-import { Container, Text } from '@app/components';
+import { Container, Text, Touchable } from '@app/components';
 
 const Game: React.FC = () => {
   return (
     <Container style={styles.container}>
-      <Text font="Black">Game Page!</Text>
+      <Touchable>
+        <Text font="Black">Game Page!</Text>
+      </Touchable>
     </Container>
   );
 };
