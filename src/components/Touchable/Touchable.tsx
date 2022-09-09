@@ -39,7 +39,7 @@ const Touchable: React.FC<TouchableProps> = ({
   return (
     <StyledTouchable
       {...props}
-      style={[style, { transform: [{ scale: offset }] }]}
+      style={[{ transform: [{ scale: offset }] }, style]}
       activeOpacity={activeOpacity}
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}

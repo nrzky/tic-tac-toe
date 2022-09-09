@@ -9,6 +9,7 @@ const PrimaryTheme: DefaultTheme = {
     background: '#ffffff',
     title: '#2f3640',
     subtitle: '#535c68',
+    board: '#ecf0f1',
     transparent: 'transparent',
   },
 };
