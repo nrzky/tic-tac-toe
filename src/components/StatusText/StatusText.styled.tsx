@@ -10,7 +10,7 @@ export const StyledStatusContainer = styled(View)({
 });
 
 export const StyledStatusTitle = styled(Text)((props) => ({
-  fontSize: 17,
+  fontSize: 14,
   color: props.theme.colors.subtitle,
   textAlign: 'center',
   marginBottom: 10,
@@ -18,7 +18,7 @@ export const StyledStatusTitle = styled(Text)((props) => ({
 
 export const StyledStatusValue = styled(Text)<StyledStatusValueProps>(
   (props) => ({
-    fontSize: 24,
+    fontSize: 36,
     textAlign: 'center',
     color: props.color,
   })

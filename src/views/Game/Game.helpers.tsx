@@ -1,5 +1,5 @@
 import { winnerResults } from './Game.constants';
-import { GameStateType, GetBoardTitleColor } from './Game.types';
+import { BoardType, GameStateType, GetBoardTitleColor } from './Game.types';
 
 export const getBoardColors: GetBoardTitleColor = (params) => {
   const result: { backgroundColor: string; textColor: string } = {
@@ -28,10 +28,21 @@ export const getBoardColors: GetBoardTitleColor = (params) => {
   return result;
 };
 
+export const checkLastRound = (gameState: GameStateType[]) => {
+  return !gameState.some((state) => state === undefined);
+};
+
 export const checkGameResult = (gameState: GameStateType[]) => {
-  const gameResult: { isFinished: boolean; winnerResult: number[] } = {
+  const gameResult: {
+    isFinished: boolean;
+    hasWinner: boolean;
+    winnerResult: number[];
+    winnerPlayerType: undefined | BoardType;
+  } = {
     isFinished: false,
+    hasWinner: false,
     winnerResult: [],
+    winnerPlayerType: undefined,
   };
 
   winnerResults.forEach((result) => {
@@ -42,10 +53,19 @@ export const checkGameResult = (gameState: GameStateType[]) => {
 
     if (isResultFinished) {
       gameResult.isFinished = true;
+      gameResult.hasWinner = true;
       gameResult.winnerResult = result;
+      gameResult.winnerPlayerType = gameState[result[0]];
+
       return;
     }
   });
+
+  console.log(checkLastRound(gameState));
+
+  if (checkLastRound(gameState)) {
+    gameResult.isFinished = true;
+  }
 
   return gameResult;
 };

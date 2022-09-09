@@ -15,8 +15,15 @@ export default StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 100,
   },
-  button: {
-    marginHorizontal: 10,
+  primaryButton: {
+    flex: 1,
+    marginLeft: 15,
+    marginRight: 5,
+  },
+  secondaryButton: {
+    flex: 1,
+    marginLeft: 5,
+    marginRight: 15,
   },
 });
 

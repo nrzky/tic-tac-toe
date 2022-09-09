@@ -20,7 +20,7 @@ const Game: React.FC = () => {
   );
 
   const [status, setStatus] = React.useState<GameStatus>({
-    round: 0,
+    round: 1,
     playerX: 0,
     playerO: 0,
   });
@@ -28,14 +28,28 @@ const Game: React.FC = () => {
   const handleRestartGame = React.useCallback(() => {
     setPlayerType('X');
     setGameState([...Array(9)].map(() => undefined));
+    setStatus((currentStatus) => ({
+      ...currentStatus,
+      round: currentStatus.round + 1,
+    }));
+  }, []);
+
+  const handleResetGame = React.useCallback(() => {
+    setPlayerType('X');
+    setGameState([...Array(9)].map(() => undefined));
+    setStatus({
+      round: 1,
+      playerX: 0,
+      playerO: 0,
+    });
   }, []);
 
   const handlePressItem = React.useCallback(
     (index: number) => {
       setGameState((currentGameState: GameStateType[]) => {
-        return currentGameState.map((board, boardIndex) => {
-          if (typeof board === 'string') {
-            return board;
+        return currentGameState.map((item, boardIndex) => {
+          if (typeof item === 'string') {
+            return item;
           }
 
           if (boardIndex === index) {
@@ -46,7 +60,7 @@ const Game: React.FC = () => {
             return playerType;
           }
 
-          return board;
+          return item;
         });
       });
     },
@@ -59,15 +73,24 @@ const Game: React.FC = () => {
 
   React.useEffect(() => {
     if (gameResult.isFinished) {
-      const winnerPlayerType = playerType === 'X' ? 'playerO' : 'playerX';
+      setStatus((currentStatus) => {
+        const newStatus = currentStatus;
 
-      setStatus((currentStatus) => ({
-        ...currentStatus,
-        [winnerPlayerType]: currentStatus[winnerPlayerType] + 1,
-        round: currentStatus.round + 1,
-      }));
+        if (gameResult.hasWinner) {
+          gameResult.winnerPlayerType === 'X'
+            ? (newStatus.playerX = currentStatus.playerX + 1)
+            : (newStatus.playerO = currentStatus.playerO + 1);
+        }
+
+        return newStatus;
+      });
     }
-  }, [gameResult.isFinished, playerType]);
+  }, [
+    gameResult.hasWinner,
+    gameResult.isFinished,
+    gameResult.winnerPlayerType,
+    handleRestartGame,
+  ]);
 
   return (
     <Container style={styles.container}>
@@ -87,11 +110,15 @@ const Game: React.FC = () => {
       </StyledGameContainer>
 
       <StyledButtonContainer>
-        <Button style={styles.button} onPress={handleRestartGame}>
+        <Button style={styles.primaryButton} onPress={handleRestartGame}>
           New Game
         </Button>
-        <Button style={styles.button} type="secondary">
-          Quit Game
+        <Button
+          style={styles.secondaryButton}
+          type="secondary"
+          onPress={handleResetGame}
+        >
+          Reset Game
         </Button>
       </StyledButtonContainer>
     </Container>
