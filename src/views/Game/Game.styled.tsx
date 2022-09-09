@@ -12,8 +12,8 @@ const ITEM_SIZE = width * 0.33 - 20;
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
+    paddingVertical: 100,
   },
   button: {
     marginHorizontal: 10,
@@ -48,10 +48,15 @@ export const StyledBoardTitle = styled(Text)<StyledBoardTitleProps>(
 );
 
 export const StyledGameContainer = styled(View)({
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+});
+
+export const StyledGameContent = styled(View)({
   flexWrap: 'wrap',
   flexDirection: 'row',
   justifyContent: 'center',
-  alignItems: 'start',
 });
 
 export const StyledButtonContainer = styled(View)({
@@ -59,4 +64,10 @@ export const StyledButtonContainer = styled(View)({
   justifyContent: 'center',
   alignItems: 'center',
   marginTop: 20,
+});
+
+export const StyledGameStatusBarContainer = styled(View)({
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginBottom: 30,
 });

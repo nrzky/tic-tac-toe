@@ -1,6 +1,7 @@
 import { DefaultTheme } from 'styled-components/native';
 
 import { TouchableProps } from '@app/components/Touchable/Touchable.types';
+import { ViewProps } from '@app/components/View/View.types';
 
 export interface BoardProps extends TouchableProps {
   type?: BoardType;
@@ -26,3 +27,13 @@ export type GetBoardTitleColor = (params: {
 }) => { backgroundColor: string; textColor: string };
 
 export type GameStateType = BoardType | undefined;
+
+export interface GameStatusBarProps extends ViewProps {
+  status: GameStatus;
+}
+
+export interface GameStatus {
+  round: number;
+  playerX: number;
+  playerO: number;
+}
