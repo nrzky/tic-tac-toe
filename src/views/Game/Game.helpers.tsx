@@ -1,4 +1,5 @@
-import { GetBoardTitleColor } from './Game.types';
+import { winnerResults } from './Game.constants';
+import { GameStateType, GetBoardTitleColor } from './Game.types';
 
 export const getBoardColors: GetBoardTitleColor = (params) => {
   const result: { backgroundColor: string; textColor: string } = {
@@ -25,4 +26,34 @@ export const getBoardColors: GetBoardTitleColor = (params) => {
   }
 
   return result;
+};
+
+export const checkGameResult = (gameState: GameStateType[]) => {
+  const gameResult: { isFinished: boolean; winnerResult: number[] } = {
+    isFinished: false,
+    winnerResult: [],
+  };
+
+  winnerResults.forEach((result) => {
+    const isResultFinished =
+      gameState[result[0]] !== undefined &&
+      gameState[result[0]] === gameState[result[1]] &&
+      gameState[result[0]] === gameState[result[2]];
+
+    if (isResultFinished) {
+      gameResult.isFinished = true;
+      gameResult.winnerResult = result;
+      return;
+    }
+  });
+
+  return gameResult;
+};
+
+export const checkIsFinished = (winnerResult: number[], index: number) => {
+  const isFinished = winnerResult
+    .find((resultItem) => resultItem === index)
+    ?.toString();
+
+  return isFinished ? true : false;
 };

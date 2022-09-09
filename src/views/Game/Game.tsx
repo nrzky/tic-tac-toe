@@ -6,12 +6,18 @@ import { Button, Container } from '@app/components';
 import { StyledButtonContainer, StyledGameContainer } from './Game.styled';
 import Board from './Board';
 import { BoardType, GameStateType } from './Game.types';
+import { checkGameResult, checkIsFinished } from './Game.helpers';
 
 const Game: React.FC = () => {
   const [playerType, setPlayerType] = React.useState<BoardType>('X');
   const [gameState, setGameState] = React.useState<GameStateType[]>(
     [...Array(9)].map(() => undefined)
   );
+
+  const handleRestartGame = React.useCallback(() => {
+    setPlayerType('X');
+    setGameState([...Array(9)].map(() => undefined));
+  }, []);
 
   const handlePressItem = React.useCallback(
     (index: number) => {
@@ -36,6 +42,10 @@ const Game: React.FC = () => {
     [playerType]
   );
 
+  const gameResult = React.useMemo(() => {
+    return checkGameResult(gameState);
+  }, [gameState]);
+
   return (
     <Container style={styles.container}>
       <StyledGameContainer>
@@ -43,23 +53,16 @@ const Game: React.FC = () => {
           <Board
             key={index.toString()}
             type={item}
-            isFinished={(() => {
-              let count = 0;
-
-              gameState.forEach((board) => {
-                if (typeof board === 'string') {
-                  count++;
-                }
-              });
-
-              return count === 5 && item === 'X';
-            })()}
+            disabled={gameResult.isFinished}
+            isFinished={checkIsFinished(gameResult.winnerResult, index)}
             onPress={() => handlePressItem(index)}
           />
         ))}
       </StyledGameContainer>
       <StyledButtonContainer>
-        <Button style={styles.button}>New Game</Button>
+        <Button style={styles.button} onPress={handleRestartGame}>
+          New Game
+        </Button>
         <Button style={styles.button} type="secondary">
           Quit Game
         </Button>
