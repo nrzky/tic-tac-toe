@@ -1,12 +1,15 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
 
 import { Button, Container } from '@app/components';
 
-import { StyledButtonContainer, StyledGameContainer } from './Game.styled';
-import Board from './Board';
+import styles, {
+  StyledButtonContainer,
+  StyledGameContainer,
+} from './Game.styled';
 import { BoardType, GameStateType } from './Game.types';
 import { checkGameResult, checkIsFinished } from './Game.helpers';
+
+import Board from './Board';
 
 const Game: React.FC = () => {
   const [playerType, setPlayerType] = React.useState<BoardType>('X');
@@ -72,13 +75,3 @@ const Game: React.FC = () => {
 };
 
 export default Game;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  button: {
-    marginHorizontal: 10,
-  },
-});

@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { Dimensions } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 import { Touchable, Text, View } from '@app/components';
 
@@ -9,6 +9,16 @@ import { getBoardColors } from './Game.helpers';
 const { width } = Dimensions.get('window');
 
 const ITEM_SIZE = width * 0.33 - 20;
+
+export default StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  button: {
+    marginHorizontal: 10,
+  },
+});
 
 export const StyledBoardContainer = styled(
   Touchable
