@@ -13,7 +13,6 @@ const ITEM_SIZE = width * 0.33 - 20;
 export default StyleSheet.create({
   container: {
     justifyContent: 'center',
-    paddingVertical: 100,
   },
   primaryButton: {
     flex: 1,
@@ -70,11 +69,12 @@ export const StyledButtonContainer = styled(View)({
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
-  marginTop: 20,
+  paddingVertical: 30,
 });
 
 export const StyledGameStatusBarContainer = styled(View)({
   flexDirection: 'row',
   justifyContent: 'space-between',
-  marginBottom: 30,
+  paddingTop: 30,
+  paddingBottom: 10,
 });

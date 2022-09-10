@@ -65,8 +65,6 @@ export const checkGameResult = (gameState: GameStateType[]) => {
     }
   });
 
-  console.log(checkLastRound(gameState));
-
   if (checkLastRound(gameState)) {
     gameResult.isFinished = true;
   }
