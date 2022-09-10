@@ -28,14 +28,21 @@ const Game: React.FC = () => {
     [...Array(9)].map(() => undefined)
   );
 
+  const gameResult = React.useMemo(() => {
+    return checkGameResult(gameState);
+  }, [gameState]);
+
   const handleRestartGame = React.useCallback(() => {
     setPlayerType('X');
     setGameState([...Array(9)].map(() => undefined));
-    setStatus((currentStatus) => ({
-      ...currentStatus,
-      round: currentStatus.round + 1,
-    }));
-  }, []);
+
+    if (gameResult.isFinished) {
+      setStatus((currentStatus) => ({
+        ...currentStatus,
+        round: currentStatus.round + 1,
+      }));
+    }
+  }, [gameResult.isFinished]);
 
   const handleResetGame = React.useCallback(() => {
     setPlayerType('X');
@@ -69,10 +76,6 @@ const Game: React.FC = () => {
     },
     [playerType]
   );
-
-  const gameResult = React.useMemo(() => {
-    return checkGameResult(gameState);
-  }, [gameState]);
 
   React.useEffect(() => {
     if (gameResult.isFinished) {
@@ -118,7 +121,7 @@ const Game: React.FC = () => {
           disabled={checkFirstRound(gameState)}
           onPress={handleRestartGame}
         >
-          {gameResult.isFinished ? 'Start Game' : 'New Game'}
+          {gameResult.isFinished ? 'Start Game' : 'Restart'}
         </Button>
         <Button
           style={styles.secondaryButton}
