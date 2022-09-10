@@ -10,7 +10,7 @@ import styles, {
 import { BoardType, GameStateType, GameStatus } from './Game.types';
 import {
   checkGameResult,
-  checkIsFinished,
+  checkIsWinnerBoard,
   checkFirstRound,
 } from './Game.helpers';
 
@@ -108,7 +108,8 @@ const Game: React.FC = () => {
               key={index.toString()}
               type={item}
               disabled={gameResult.isFinished}
-              isFinished={checkIsFinished(gameResult.winnerResult, index)}
+              isWinner={checkIsWinnerBoard(gameResult.winnerResult, index)}
+              isFinished={gameResult.isFinished}
               onPress={() => handlePressItem(index)}
             />
           ))}

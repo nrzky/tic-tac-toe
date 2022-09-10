@@ -33,8 +33,9 @@ export const StyledBoardContainer = styled(
   width: ITEM_SIZE,
   backgroundColor: getBoardColors({
     type: props.type,
-    isFinished: props.isFinished,
+    isWinner: props.isWinner,
     colors: props.theme.colors,
+    isFinished: props.isFinished,
   }).backgroundColor,
   borderRadius: 10,
   justifyContent: 'center',
@@ -47,8 +48,9 @@ export const StyledBoardTitle = styled(Text)<StyledBoardTitleProps>(
     fontSize: ITEM_SIZE * 0.7,
     color: getBoardColors({
       type: props.type,
-      isFinished: props.isFinished,
+      isWinner: props.isWinner,
       colors: props.theme.colors,
+      isFinished: props.isFinished,
     }).textColor,
   })
 );

@@ -8,19 +8,23 @@ export const getBoardColors: GetBoardTitleColor = (params) => {
   };
 
   if (params.type === 'X') {
-    result.textColor = params.isFinished
+    result.textColor = params.isWinner
       ? params.colors.white
+      : params.isFinished
+      ? params.colors.disabled
       : params.colors.primary;
-    result.backgroundColor = params.isFinished
+    result.backgroundColor = params.isWinner
       ? params.colors.primary
       : params.colors.board;
   }
 
   if (params.type === 'O') {
-    result.textColor = params.isFinished
+    result.textColor = params.isWinner
       ? params.colors.white
+      : params.isFinished
+      ? params.colors.disabled
       : params.colors.secondary;
-    result.backgroundColor = params.isFinished
+    result.backgroundColor = params.isWinner
       ? params.colors.secondary
       : params.colors.board;
   }
@@ -72,10 +76,10 @@ export const checkGameResult = (gameState: GameStateType[]) => {
   return gameResult;
 };
 
-export const checkIsFinished = (winnerResult: number[], index: number) => {
-  const isFinished = winnerResult
+export const checkIsWinnerBoard = (winnerResult: number[], index: number) => {
+  const isWinner = winnerResult
     .find((resultItem) => resultItem === index)
     ?.toString();
 
-  return isFinished ? true : false;
+  return isWinner ? true : false;
 };

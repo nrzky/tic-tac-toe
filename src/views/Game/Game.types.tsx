@@ -5,6 +5,7 @@ import { ViewProps } from '@app/components/View/View.types';
 
 export interface BoardProps extends TouchableProps {
   type?: BoardType;
+  isWinner: boolean;
   isFinished: boolean;
 }
 
@@ -12,16 +13,19 @@ export type BoardType = 'X' | 'O';
 
 export interface StyledBoardContainerProps {
   type?: BoardType;
+  isWinner: boolean;
   isFinished: boolean;
 }
 
 export interface StyledBoardTitleProps {
   type?: BoardType;
+  isWinner: boolean;
   isFinished: boolean;
 }
 
 export type GetBoardTitleColor = (params: {
   type?: BoardType;
+  isWinner: boolean;
   isFinished: boolean;
   colors: DefaultTheme['colors'];
 }) => { backgroundColor: string; textColor: string };
