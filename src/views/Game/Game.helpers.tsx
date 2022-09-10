@@ -28,6 +28,10 @@ export const getBoardColors: GetBoardTitleColor = (params) => {
   return result;
 };
 
+export const checkFirstRound = (gameState: GameStateType[]) => {
+  return !gameState.some((state) => typeof state === 'string');
+};
+
 export const checkLastRound = (gameState: GameStateType[]) => {
   return !gameState.some((state) => state === undefined);
 };

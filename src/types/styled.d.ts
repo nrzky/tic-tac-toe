@@ -11,6 +11,7 @@ declare module 'styled-components' {
       title: string;
       subtitle: string;
       board: string;
+      disabled: string;
       transparent: string;
     };
   }

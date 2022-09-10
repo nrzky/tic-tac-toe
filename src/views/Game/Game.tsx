@@ -8,22 +8,25 @@ import styles, {
   StyledGameContent,
 } from './Game.styled';
 import { BoardType, GameStateType, GameStatus } from './Game.types';
-import { checkGameResult, checkIsFinished } from './Game.helpers';
+import {
+  checkGameResult,
+  checkIsFinished,
+  checkFirstRound,
+} from './Game.helpers';
 
 import Board from './Board';
 import GameStatusBar from './GameStatusBar';
 
 const Game: React.FC = () => {
-  const [playerType, setPlayerType] = React.useState<BoardType>('X');
-  const [gameState, setGameState] = React.useState<GameStateType[]>(
-    [...Array(9)].map(() => undefined)
-  );
-
   const [status, setStatus] = React.useState<GameStatus>({
     round: 1,
     playerX: 0,
     playerO: 0,
   });
+  const [playerType, setPlayerType] = React.useState<BoardType>('X');
+  const [gameState, setGameState] = React.useState<GameStateType[]>(
+    [...Array(9)].map(() => undefined)
+  );
 
   const handleRestartGame = React.useCallback(() => {
     setPlayerType('X');
@@ -82,7 +85,7 @@ const Game: React.FC = () => {
             : (newStatus.playerO = currentStatus.playerO + 1);
         }
 
-        return newStatus;
+        return { ...newStatus };
       });
     }
   }, [
@@ -110,8 +113,12 @@ const Game: React.FC = () => {
       </StyledGameContainer>
 
       <StyledButtonContainer>
-        <Button style={styles.primaryButton} onPress={handleRestartGame}>
-          New Game
+        <Button
+          style={styles.primaryButton}
+          disabled={checkFirstRound(gameState)}
+          onPress={handleRestartGame}
+        >
+          {gameResult.isFinished ? 'Start Game' : 'New Game'}
         </Button>
         <Button
           style={styles.secondaryButton}
