@@ -97,7 +97,10 @@ const Game: React.FC<GameProps> = ({ navigation }) => {
 
   return (
     <Container style={styles.container}>
-      <GameStatusBar status={status} />
+      <GameStatusBar
+        status={status}
+        currentPlayer={!gameResult.isFinished ? playerType : undefined}
+      />
       <StyledGameContainer>
         <StyledGameContent>
           {gameState.map((item: GameStateType, index: number) => (
@@ -112,7 +115,6 @@ const Game: React.FC<GameProps> = ({ navigation }) => {
           ))}
         </StyledGameContent>
       </StyledGameContainer>
-
       <StyledButtonContainer>
         <Button
           style={styles.primaryButton}

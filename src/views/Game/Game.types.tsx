@@ -37,6 +37,7 @@ export type GameStateType = BoardType | undefined;
 
 export interface GameStatusBarProps extends ViewProps {
   status: GameStatus;
+  currentPlayer?: BoardType;
 }
 
 export interface GameStatus {

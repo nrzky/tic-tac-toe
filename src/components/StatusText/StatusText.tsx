@@ -10,11 +10,19 @@ const StatusText: React.FC<StatusTextProps> = ({
   title,
   value,
   color,
+  isCurrentPlayer = false,
+  playerColor,
   ...props
 }) => {
   return (
     <StyledStatusContainer {...props}>
-      <StyledStatusTitle font="Bold">{title}</StyledStatusTitle>
+      <StyledStatusTitle
+        isCurrentPlayer={isCurrentPlayer}
+        playerColor={playerColor}
+        font="Bold"
+      >
+        {title}
+      </StyledStatusTitle>
       <StyledStatusValue font="Black" color={color}>
         {value}
       </StyledStatusValue>
