@@ -7,7 +7,7 @@ import styles, {
   StyledGameContainer,
   StyledGameContent,
 } from './Game.styled';
-import { BoardType, GameStateType, GameStatus } from './Game.types';
+import { BoardType, GameProps, GameStateType, GameStatus } from './Game.types';
 import {
   checkGameResult,
   checkIsWinnerBoard,
@@ -17,7 +17,7 @@ import {
 import Board from './Board';
 import GameStatusBar from './GameStatusBar';
 
-const Game: React.FC = () => {
+const Game: React.FC<GameProps> = ({ navigation }) => {
   const [status, setStatus] = React.useState<GameStatus>({
     round: 1,
     playerX: 0,
@@ -45,14 +45,11 @@ const Game: React.FC = () => {
   }, [gameResult.isFinished]);
 
   const handleResetGame = React.useCallback(() => {
-    setPlayerType('X');
-    setGameState([...Array(9)].map(() => undefined));
-    setStatus({
-      round: 1,
-      playerX: 0,
-      playerO: 0,
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Welcome' }],
     });
-  }, []);
+  }, [navigation]);
 
   const handlePressItem = React.useCallback(
     (index: number) => {
@@ -129,7 +126,7 @@ const Game: React.FC = () => {
           type="secondary"
           onPress={handleResetGame}
         >
-          Reset Game
+          Quit Game
         </Button>
       </StyledButtonContainer>
     </Container>

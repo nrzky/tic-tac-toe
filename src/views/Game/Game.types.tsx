@@ -1,7 +1,10 @@
 import { DefaultTheme } from 'styled-components/native';
 
+import { AppStackScreenProps } from '@app/routes';
 import { TouchableProps } from '@app/components/Touchable/Touchable.types';
 import { ViewProps } from '@app/components/View/View.types';
+
+export type GameProps = AppStackScreenProps<'Game'>;
 
 export interface BoardProps extends TouchableProps {
   type?: BoardType;
