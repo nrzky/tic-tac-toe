@@ -4,7 +4,6 @@ import { StyledBoardContainer, StyledBoardTitle } from './Game.styled';
 import { BoardProps } from './Game.types';
 
 const Board: React.FC<BoardProps> = ({
-  style,
   type,
   isWinner = false,
   isFinished,
@@ -13,7 +12,6 @@ const Board: React.FC<BoardProps> = ({
   return (
     <StyledBoardContainer
       {...props}
-      style={[style]}
       type={type}
       isWinner={isWinner}
       isFinished={isFinished}
