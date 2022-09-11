@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components/native';
 import { useFonts } from 'expo-font';
 
 import { AppNavigator } from '@app/routes';
-import { PrimaryTheme } from '@app/themes';
+import { DarkTheme } from '@app/themes';
 
 LogBox.ignoreLogs(['Require cycle:']);
 
@@ -21,7 +21,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <ThemeProvider theme={PrimaryTheme}>
+    <ThemeProvider theme={DarkTheme}>
       <AppNavigator />
     </ThemeProvider>
   );
