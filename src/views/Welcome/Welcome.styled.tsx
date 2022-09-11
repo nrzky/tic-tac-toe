@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
+import ThemeSwitch from 'expo-dark-mode-switch';
 
 import { View, Text } from '@app/components';
 
@@ -43,3 +44,9 @@ export const StyledSecondaryText = styled(Text)((props) => ({
   color: props.theme.colors.secondary,
   marginHorizontal: 10,
 }));
+
+export const StyledThemeSwitch = styled(ThemeSwitch)({
+  position: 'absolute',
+  top: 60,
+  alignSelf: 'center',
+});

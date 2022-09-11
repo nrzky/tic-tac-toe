@@ -1,16 +1,13 @@
 import * as React from 'react';
-import { LogBox, Appearance } from 'react-native';
-import { ThemeProvider } from 'styled-components/native';
+import { LogBox } from 'react-native';
 import { useFonts } from 'expo-font';
 
 import { AppNavigator } from '@app/routes';
-import { DarkTheme, PrimaryTheme } from '@app/themes';
+import { ThemeProvider } from '@app/context';
 
 LogBox.ignoreLogs(['Require cycle:']);
 
 const App: React.FC = () => {
-  const [isDarkTheme] = React.useState(Appearance.getColorScheme() === 'dark');
-
   const [isFontsLoaded] = useFonts({
     'Montserrat-Black': require('./src/assets/fonts/Montserrat-Black.ttf'),
     'Montserrat-Bold': require('./src/assets/fonts/Montserrat-Bold.ttf'),
@@ -23,7 +20,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <ThemeProvider theme={isDarkTheme ? DarkTheme : PrimaryTheme}>
+    <ThemeProvider>
       <AppNavigator />
     </ThemeProvider>
   );
