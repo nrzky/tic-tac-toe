@@ -15,8 +15,6 @@ export default StyleSheet.create({
 });
 
 export const StyledTitleContainer = styled(View)({
-  position: 'absolute',
-  top: 100,
   textAlign: 'center',
   flexDirection: 'row',
   justifyContent: 'center',
@@ -24,16 +22,24 @@ export const StyledTitleContainer = styled(View)({
   marginBottom: 100,
 });
 
+export const StyledButtonContainer = styled(View)({
+  position: 'absolute',
+  bottom: 150,
+  left: 0,
+  right: 0,
+  justifyContent: 'center',
+});
+
 export const StyledPrimaryText = styled(Text)((props) => ({
-  fontSize: 100,
+  fontSize: 50,
   textAlign: 'start',
   color: props.theme.colors.primary,
   marginHorizontal: 5,
 }));
 
 export const StyledSecondaryText = styled(Text)((props) => ({
-  fontSize: 100,
+  fontSize: 50,
   textAlign: 'center',
   color: props.theme.colors.secondary,
-  marginHorizontal: 5,
+  marginHorizontal: 10,
 }));
